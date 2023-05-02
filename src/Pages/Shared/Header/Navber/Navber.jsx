@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { AuthContext } from '../../../../Providers/AuthProviders';
+import img from '../../../../assets/download.png'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,13 +19,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='bg-gray-200 mx-20'>
+    <nav className=' mx-20 mt-5 '>
       <div className='mx-auto px-4 sm:px-6 lg:px-8'>
 
         <div className='flex justify-between items-center  h-16'>
           <div className='flex-shrink-0 flex items-center'>
-            <Link to='/' className='text-black font-bold text-4xl'>
-              Food Gate
+            <Link to='/' className=''>
+              <img className='h-16 w-48' src={img} alt="" />
             </Link>
           </div>
 
@@ -60,10 +61,26 @@ const Navbar = () => {
                     Blog
                   </Link>
                 </li>
+                <li className='ml-6'>
+                  <Link
+                    to='/blog'
+                    className='text-black px-3 py-2 rounded-md text-xl font-medium'
+                  >
+                    Menu
+                  </Link>
+                </li>
+                <li className='ml-6'>
+                  <Link
+                    to='/blog'
+                    className='text-black px-3 py-2 rounded-md text-xl font-medium'
+                  >
+                    About Us
+                  </Link>
+                </li>
 
               </ul>
             </div>
-            <div>
+            <div className='ps-20'>
              {user ? 
              <Link ><button onClick={handleLogOut} className="btn ">LogOut</button></Link> :
              <Link to='/login'><button className="btn ">Login</button></Link>
@@ -79,25 +96,25 @@ const Navbar = () => {
       <div className={`${isOpen ? 'block' : 'hidden'} sm:hidden`}>
         <div className='px-2 pt-2 pb-3'>
           <Link
-            to='/about'
-            className='block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-400 hover:bg-gray-700'
+            to='/'
+            className='block px-3 py-2 rounded-md text-base font-medium  hover:text-gray-400 hover:bg-gray-700'
             onClick={toggleNavbar}
           >
-            About
+            Home
           </Link>
           <Link
-            to='/services'
-            className='block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-400 hover:bg-gray-700'
+            to='/blog'
+            className='block px-3 py-2 rounded-md text-base font-medium  hover:text-gray-400 hover:bg-gray-700'
             onClick={toggleNavbar}
           >
-            Services
+            Blog
           </Link>
           <Link
             to='/contact'
-            className='block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-400 hover:bg-gray-700'
+            className='block px-3 py-2 rounded-md text-base font-medium  hover:text-gray-400 hover:bg-gray-700'
             onClick={toggleNavbar}
           >
-            Contact
+            About Us
           </Link>
           <Link 
           to='/login'><button className="btn ">Login</button>
