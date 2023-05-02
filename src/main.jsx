@@ -11,6 +11,8 @@ import ChefDetails from "./Pages/chefDetails/chefDetails";
 import Login from "./Pages/Login/Login";
 import LoginLayout from "./Layouts/LoginLayout";
 import Register from "./Pages/Register/Register";
+import AuthProviders from "./Providers/AuthProviders";
+import PrivetRoute from "./PrivetRoute/PrivetRoute";
 
 
 const router = createBrowserRouter([
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
       } ,
       {
         path: '/details/:id' ,
-        element: <ChefDetails></ChefDetails> ,
+        element: <PrivetRoute><ChefDetails></ChefDetails></PrivetRoute> ,
         loader: ({params}) => fetch (`http://localhost:3000/chefs/${params.id}`)
       }
     ]
@@ -47,6 +49,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProviders><RouterProvider router={router} /></AuthProviders>
   </React.StrictMode>
 );

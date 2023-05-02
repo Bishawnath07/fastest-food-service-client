@@ -1,29 +1,46 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 
 const Register = () => {
+    const { createUser } = useContext(AuthContext);
+    console.log(createUser);
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState('')
 
-
-    const handleRegister = event =>{
+    const handleRegister = event => {
         event.preventDefault();
 
-        const form = event.target ;
+        const form = event.target;
         const name = form.name.value;
-    
+
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name , email , password )
+        console.log(name, email, password)
 
-        createUser(email , password)
-        .then(result =>{
-            const createdUser = result.user;
-            console.log(createdUser);
-        })
+        // validate
+        if (!/(?=.*[A-Z])/.test(password)) {
+            setError('Please add at least one uppercase');
+            return;
+        }
+        else if (!/(?=.*[0-9].*[0-9])/.test(password)) {
+            setError('Please add at least two numbers');
+            return
+        }
+        else if (password.length < 6) {
+            setError('Please add at least 6 characters in your password')
+            return;
+        }
 
-        .catch(error =>{
-            console.log(error);
-        })
+        createUser(email, password)
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser);
+            })
+
+            .catch(error => {
+                console.log(error);
+            })
 
     }
 
@@ -61,6 +78,8 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Register</button>
                             </div>
+                            <p className='text-danger'>{error}</p>
+                            <p className='text-success'>{success}</p>
                         </form>
 
                     </div>

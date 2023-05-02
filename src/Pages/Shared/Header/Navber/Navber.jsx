@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { AuthContext } from '../../../../Providers/AuthProviders';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {user , logOut} = useContext(AuthContext)
+
+  const handleLogOut = () =>{
+    logOut()
+    .then()
+    .catch(error => console.log(error))
+  }
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -56,7 +64,10 @@ const Navbar = () => {
               </ul>
             </div>
             <div>
-              <Link to='/login'><button className="btn ">Login</button></Link>
+             {user ? 
+             <Link ><button onClick={handleLogOut} className="btn ">LogOut</button></Link> :
+             <Link to='/login'><button className="btn ">Login</button></Link>
+             }
             </div>
 
           </div>
