@@ -4,13 +4,15 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
+console.log('environment variable' , import.meta.env.VITE_PASS)
 const firebaseConfig = {
-  apiKey: "AIzaSyChLZK62wxR_oeQ4aMzjp7V2_x1qA5bUlU",
-  authDomain: "fastest-food-service.firebaseapp.com",
-  projectId: "fastest-food-service",
-  storageBucket: "fastest-food-service.appspot.com",
-  messagingSenderId: "428305838617",
-  appId: "1:428305838617:web:2bef1dbf9e4a0ca785b088"
+  apiKey: import.meta.env.VITE_APIKEY ,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN ,
+  projectId: import.meta.env.VITE_PROJECTID ,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET ,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID ,
+  appId: import.meta.env.VITE_APPID
 };
 
 // Initialize Firebase
