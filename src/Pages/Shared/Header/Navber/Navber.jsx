@@ -35,31 +35,32 @@ const Navbar = () => {
 
           <div className='hidden sm:flex sm:items-center '>
             <div className=''>
-            <ul className='hidden sm:flex sm:items-center'>
-              <li className='ml-6'>
-                <Link
-                  to='/'
-                  className='text-black  px-3 py-2 rounded-md text-xl font-medium'
-                >
-                  Home
-                </Link>
-              </li>
-              <li className='ml-6'>
-                <Link
-                  to='/blog'
-                  className='text-black px-3 py-2 rounded-md text-xl font-medium'
-                >
-                  Blog
-                </Link>
-              </li>
-              
-            </ul>
+              <ul className='hidden sm:flex sm:items-center'>
+                <li className='ml-6'>
+                  <Link
+                    to='/'
+                    className='text-black  px-3 py-2 rounded-md text-xl font-medium'
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className='ml-6'>
+                  <Link
+                    to='/blog'
+                    className='text-black px-3 py-2 rounded-md text-xl font-medium'
+                  >
+                    Blog
+                  </Link>
+                </li>
+
+              </ul>
             </div>
-            
+            <div>
+              <Link to='/login'><button className="btn ">Login</button></Link>
+            </div>
+
           </div>
-          <div>
-          <button className="btn ">Login</button>
-          </div>
+
 
         </div>
       </div>
@@ -86,6 +87,9 @@ const Navbar = () => {
             onClick={toggleNavbar}
           >
             Contact
+          </Link>
+          <Link 
+          to='/login'><button className="btn ">Login</button>
           </Link>
         </div>
       </div>
