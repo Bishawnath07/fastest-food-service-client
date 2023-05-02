@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ChefCard from '../../ChefCart/ChefCard';
 import Banner from '../Banner/Banner';
 import BlockArticles from '../../BlockArticles/BlockArticles';
+import OurMission from '../../OurMission/OurMission';
 
 const Chefs = () => {
     const [chefs, setChefs] = useState([])
@@ -28,7 +29,7 @@ const Chefs = () => {
                 </div>
             </div>
             <BlockArticles></BlockArticles>
-            
+            <OurMission></OurMission>
         </div>
     );
 };
