@@ -7,12 +7,12 @@ import {
 import "./index.css";
 import Main from "./Layouts/Main";
 import Chefs from "./Pages/Shared/chefs/Chefs";
-import ChefDetails from "./Pages/chefDetails/chefDetails";
-import Login from "./Pages/Login/Login";
 import LoginLayout from "./Layouts/LoginLayout";
 import Register from "./Pages/Register/Register";
 import AuthProviders from "./Providers/AuthProviders";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import ChefDetails from "./Pages/chefDetails/ChefDetails";
 
 
 const router = createBrowserRouter([
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage> ,
     children: [
       {
         path:'/login' ,
