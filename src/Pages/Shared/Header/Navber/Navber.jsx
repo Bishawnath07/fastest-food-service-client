@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { AuthContext } from '../../../../Providers/AuthProviders';
 import img from '../../../../assets/download.png'
+import man from './image/343758505_1228319094488968_5194510006319260253_n.jpg'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {user , logOut} = useContext(AuthContext)
+  console.log(user)
 
   const handleLogOut = () =>{
     logOut()
@@ -82,7 +84,12 @@ const Navbar = () => {
             </div>
             <div className='ps-20'>
              {user ? 
-             <Link ><button onClick={handleLogOut} className="btn ">LogOut</button></Link> :
+             <Link >
+             <div className='flex items-center gap-5'>
+             <img className='rounded-xl h-10' src={man} alt="" />
+             <button onClick={handleLogOut} className="btn ">LogOut</button>
+             </div>
+             </Link> :
              <Link to='/login'><button className="btn ">Login</button></Link>
              }
             </div>

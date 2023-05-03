@@ -13,6 +13,7 @@ import AuthProviders from "./Providers/AuthProviders";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import ChefDetails from "./Pages/chefDetails/ChefDetails";
+import Blog from "./Pages/Blog/Blog";
 
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: 'blog',
+        element: <Blog></Blog>
       },
       
       {

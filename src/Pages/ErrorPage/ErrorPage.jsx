@@ -18,7 +18,7 @@ const ErrorPage = () => {
                         {error?.message}
                     </p>
                     <Link to="" className='btn'>
-                        <button onClick={() => navigate(-1)} className='bg-cyan-500 rounded-lg px-1 py-3'> back to page</button>
+                        <button onClick={() => navigate(-1)} className=' rounded-lg px-1 py-3'> back to page</button>
                     </Link>
                 </div>
             </div>
