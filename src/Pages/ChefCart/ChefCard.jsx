@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaEye, FaRegLemon, FaRegThumbsUp } from 'react-icons/fa';
+import { FaRegThumbsUp } from 'react-icons/fa';
+import LazyLoad from 'react-lazy-load';
 import { Link } from 'react-router-dom';
 
 const ChefCard = ({ chef }) => {
@@ -9,7 +10,9 @@ const ChefCard = ({ chef }) => {
 
         <div className="card  bg-base-100 shadow-xl mb-5">
             <figure className="px-10 pt-10">
-                <img src={img} alt="Shoes" className="rounded-xl" />
+                <LazyLoad>
+                    <img src={img} alt="Shoes" className="rounded-xl" />
+                    </LazyLoad>
             </figure>
             <div className="card-body items-center text-center">
                 <h2 className="card-title font-bold"> Name: {name} </h2>

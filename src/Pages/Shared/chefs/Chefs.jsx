@@ -19,6 +19,7 @@ const Chefs = () => {
             <Banner></Banner>
             <div className='mt-20'>
                 <h1 className='text-5xl text-center my-10'>Here Are Your Favorite Chefe</h1>
+                
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mx-10 md:mx-20'>
                     {
                         chefs.map(chef => <ChefCard
