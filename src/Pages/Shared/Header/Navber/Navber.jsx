@@ -123,9 +123,17 @@ const Navbar = () => {
           >
             About Us
           </Link>
-          <Link 
-          to='/login'><button className="btn ">Login</button>
-          </Link>
+          <div onClick={toggleNavbar} className='md:ps-20 ps-3'>
+             {user ? 
+             <Link >
+             <div className='md:flex justify-center items-center gap-5'>
+             <img className='rounded-xl mb-3 h-10' src={man} alt="" />
+             <button onClick={handleLogOut} className="btn ">LogOut</button>
+             </div>
+             </Link> :
+             <Link to='/login'><button className="btn ">Login</button></Link>
+             }
+            </div>
         </div>
       </div>
     </nav>
