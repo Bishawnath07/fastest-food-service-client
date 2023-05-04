@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { AuthContext } from '../../../../Providers/AuthProviders';
 import img from '../../../../assets/download.png'
@@ -9,6 +9,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {user , logOut} = useContext(AuthContext)
   console.log(user)
+  const [activeRoute, setActiveRoute] = useState('/');
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setActiveRoute(pathname);
+  }, [pathname]);
 
   const handleLogOut = () =>{
     logOut()
@@ -26,7 +32,7 @@ const Navbar = () => {
 
         <div className='flex justify-between items-center  h-16'>
           <div className='flex-shrink-0 flex items-center'>
-            <Link to='/' className=''>
+            <Link to='/' className={activeRoute === '/' ? 'active' : ''}>
               <img className='h-16 w-48' src={img} alt="" />
             </Link>
           </div>
@@ -48,49 +54,53 @@ const Navbar = () => {
             <div className=''>
               <ul className='hidden sm:flex sm:items-center'>
                 <li className='ml-6'>
-                  <Link
+                  <NavLink
                     to='/'
-                    className='text-black  px-3 py-2 rounded-md text-xl font-medium'
+                    className={({ isActive }) => (isActive ? 'text-blue-600 px-2 font-semibold block lg:inline' : 'text-black px-3 py-2 rounded-md text-xl font-medium')}
                   >
                     Home
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className='ml-6'>
-                  <Link
+                  <NavLink
                     to='/blog'
-                    className='text-black px-3 py-2 rounded-md text-xl font-medium'
+                    className={({ isActive }) => (isActive ? 'text-blue-600 px-2 font-xl font-semibold block lg:inline' : 'text-black px-3 py-2 rounded-md text-xl font-medium')}
                   >
                     Blog
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className='ml-6'>
-                  <Link
+                  <NavLink
                     to='/blog'
                     className='text-black px-3 py-2 rounded-md text-xl font-medium'
                   >
                     Menu
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className='ml-6'>
-                  <Link
+                  <NavLink
                     to='/blog'
                     className='text-black px-3 py-2 rounded-md text-xl font-medium'
                   >
                     About Us
-                  </Link>
+                  </NavLink>
                 </li>
 
               </ul>
             </div>
             <div className='ps-20'>
              {user ? 
-             <Link >
+             <NavLink >
              <div className='flex items-center gap-5'>
-             <img className='rounded-xl h-10' src={man} alt="" />
+             {
+              user && <div className="tooltip" data-tip={user && user.displayName}>
+              <img  className='rounded-xl h-10 w-10' src={user.photoURL}  alt="" />
+            </div>
+             }
              <button onClick={handleLogOut} className="btn ">LogOut</button>
              </div>
-             </Link> :
-             <Link to='/login'><button className="btn ">Login</button></Link>
+             </NavLink> :
+             <NavLink to='/login'><button className="btn ">Login</button></NavLink>
              }
             </div>
 
@@ -127,7 +137,11 @@ const Navbar = () => {
              {user ? 
              <Link >
              <div className='md:flex justify-center items-center gap-5'>
-             <img className='rounded-xl mb-3 h-10' src={man} alt="" />
+              {
+                user && <div className="tooltip" data-tip="hello">
+                <button className="btn">Hover me</button>
+              </div>
+              }
              <button onClick={handleLogOut} className="btn ">LogOut</button>
              </div>
              </Link> :

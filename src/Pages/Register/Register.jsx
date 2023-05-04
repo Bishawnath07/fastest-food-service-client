@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -13,21 +15,27 @@ const Register = () => {
 
         const form = event.target;
         const name = form.name.value;
+        const photo = form.photoURL;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, email, password)
+        console.log(name, photo , email, password)
 
-        // validate
+
+        // validation
+        
         if (!/(?=.*[A-Z])/.test(password)) {
             setError('Please add at least one uppercase');
+            toast('Please add at least one uppercase')
             return;
         }
         else if (!/(?=.*[0-9].*[0-9])/.test(password)) {
             setError('Please add at least two numbers');
+            toast('Please add at least two numbers')
             return
         }
         else if (password.length < 6) {
             setError('Please add at least 6 characters in your password')
+            toast('Please add at least 6 characters in your password')
             return;
         }
 
@@ -47,6 +55,7 @@ const Register = () => {
     return (
         <div>
             <div className="hero ">
+                <ToastContainer></ToastContainer>
                 <div className="hero-content flex-col ">
                     <div className="text-center ">
                         <h1 className="text-5xl font-bold">Register now!</h1>
@@ -58,6 +67,12 @@ const Register = () => {
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input type="text" name='name' placeholder="name" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Phot URL</span>
+                                </label>
+                                <input type="text" name='photo' placeholder="photo url" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -77,8 +92,7 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Register</button>
                             </div>
-                            <p className='text-danger'>{error}</p>
-                            <p className='text-success'>{success}</p>
+                           
                         </form>
 
                     </div>
