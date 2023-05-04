@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: '/details/:id' ,
         element: <PrivetRoute><ChefDetails></ChefDetails></PrivetRoute> ,
-        loader: ({params}) => fetch (`http://localhost:3000/chefs/${params.id}`)
+        loader: ({params}) => fetch (`https://fastest-food-service-server-bishawnath07.vercel.app/chefs/${params.id}`)
       }
     ]
   },

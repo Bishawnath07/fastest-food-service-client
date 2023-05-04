@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
 const Login = () => {
@@ -12,6 +12,19 @@ const Login = () => {
 
     const auth = getAuth(app)
     const provider = new GoogleAuthProvider();
+    const GithubProvider = new GithubAuthProvider();
+
+
+    const handleGithubSignIn = () =>{
+        signInWithPopup(auth , GithubProvider)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
+    }
 
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
@@ -80,7 +93,7 @@ const Login = () => {
                     </form>
                     <div className='flex flex-col mx-10'>
                         <button onClick={handleGoogleSignIn} className='btn btn-success mb-4 flex items-center gap-5' ><FaGoogle /> Login With Google</button>
-                        <button  className="btn btn-success  flex items-center gap-5 mb-10"><FaGithub /> Login With Github</button>
+                        <button onClick={handleGithubSignIn} className="btn btn-success  flex items-center gap-5 mb-10"><FaGithub /> Login With Github</button>
                     </div>
                     
                 </div>
