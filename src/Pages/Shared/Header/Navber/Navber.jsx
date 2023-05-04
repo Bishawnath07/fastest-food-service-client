@@ -7,8 +7,8 @@ import man from './image/343758505_1228319094488968_5194510006319260253_n.jpg'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logOut } = useContext(AuthContext)
-  console.log(user)
+  const { user,  logOut } = useContext(AuthContext)
+  
   const [activeRoute, setActiveRoute] = useState('/');
   const { pathname } = useLocation();
 

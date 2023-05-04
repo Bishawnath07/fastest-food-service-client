@@ -5,22 +5,23 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const {  createUser , updateProfileAndPhoto } = useContext(AuthContext);
     console.log(createUser);
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
+
 
     const handleRegister = event => {
         event.preventDefault();
 
         const form = event.target;
         const name = form.name.value;
-        const photo = form.photoURL;
+        const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
         console.log(name, photo , email, password)
 
-
+        
         // validation
         
         if (!/(?=.*[A-Z])/.test(password)) {
@@ -39,10 +40,12 @@ const Register = () => {
             return;
         }
 
-        createUser(email, password)
+        createUser( email, password , name , photo)
             .then(result => {
                 const createdUser = result.user;
                 console.log(createdUser);
+                updateUser(result.user , name , photo)
+                
             })
 
             .catch(error => {
@@ -50,6 +53,16 @@ const Register = () => {
             })
 
     }
+
+    const updateUser = (user , name , photo )=>{
+        updateProfileAndPhoto(user , name , photo)
+        .then(result =>{
+            console.log('update user' ,);
+        })
+        .catch(error => console.log(error))
+    }
+
+    
 
 
     return (
