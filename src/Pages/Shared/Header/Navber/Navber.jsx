@@ -7,7 +7,7 @@ import man from './image/343758505_1228319094488968_5194510006319260253_n.jpg'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {user , logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext)
   console.log(user)
   const [activeRoute, setActiveRoute] = useState('/');
   const { pathname } = useLocation();
@@ -16,10 +16,10 @@ const Navbar = () => {
     setActiveRoute(pathname);
   }, [pathname]);
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     logOut()
-    .then()
-    .catch(error => console.log(error))
+      .then()
+      .catch(error => console.log(error))
   }
 
   const toggleNavbar = () => {
@@ -79,7 +79,7 @@ const Navbar = () => {
                 </li>
                 <li className='ml-6'>
                   <NavLink
-                    to='/blog'
+                    to=''
                     className='text-black px-3 py-2 rounded-md text-xl font-medium'
                   >
                     About Us
@@ -89,19 +89,19 @@ const Navbar = () => {
               </ul>
             </div>
             <div className='ps-20'>
-             {user ? 
-             <NavLink >
-             <div className='flex items-center gap-5'>
-             {
-              user && <div className="tooltip" data-tip={user && user.displayName}>
-              <img  className='rounded-xl h-10 w-10' src={user.photoURL}  alt="" />
-            </div>
-             }
-             <button onClick={handleLogOut} className="btn ">LogOut</button>
-             </div>
-             </NavLink> :
-             <NavLink to='/login'><button className="btn ">Login</button></NavLink>
-             }
+              {user ?
+                <NavLink >
+                  <div className='flex items-center gap-5'>
+                    {
+                      user && <div className="tooltip" data-tip={user && user.displayName}>
+                        <img className='rounded-xl h-10 w-10' src={user.photoURL} alt="" />
+                      </div>
+                    }
+                    <button onClick={handleLogOut} className="btn ">LogOut</button>
+                  </div>
+                </NavLink> :
+                <NavLink to='/login'><button className="btn ">Login</button></NavLink>
+              }
             </div>
 
           </div>
@@ -133,21 +133,25 @@ const Navbar = () => {
           >
             About Us
           </Link>
-          <div onClick={toggleNavbar} className='md:ps-20 ps-3'>
-             {user ? 
-             <Link >
-             <div className='md:flex justify-center items-center gap-5'>
-              {
-                user && <div className="tooltip" data-tip="hello">
-                <button className="btn">Hover me</button>
-              </div>
-              }
-             <button onClick={handleLogOut} className="btn ">LogOut</button>
-             </div>
-             </Link> :
-             <Link to='/login'><button className="btn ">Login</button></Link>
-             }
-            </div>
+          <div onClick={toggleNavbar} className='md:ps-20'>
+            {user ?
+              <Link >
+                <div className='flex justify-start items-center gap-5 ps-3'>
+                  {
+                    user && <div className="tooltip" data-tip="hello">
+                      {
+                        user && <div className="tooltip" data-tip={user && user.displayName}>
+                          <img className='rounded-xl h-10 w-10' src={user.photoURL} alt="" />
+                        </div>
+                      }
+                    </div>
+                  }
+                  <button onClick={handleLogOut} className="btn ">LogOut</button>
+                </div>
+              </Link> :
+              <Link to='/login'><button className="btn ">Login</button></Link>
+            }
+          </div>
         </div>
       </div>
     </nav>

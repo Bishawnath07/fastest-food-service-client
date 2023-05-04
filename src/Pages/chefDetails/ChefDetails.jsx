@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaEye, FaRegThumbsUp, FaStar, FaStarHalf } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
-import ChefCard from './ChefCard/ChefCard';
+import Footer from '../Footer/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 
 const ChefDetails = () => {
@@ -72,7 +72,8 @@ const ChefDetails = () => {
     };
 
     return (
-        <div className=' mx-20  mt-16'>
+        <div>
+            <div className=' mx-20  mt-16'>
             <div className="card card-side bg-base-100 shadow-xl md:p-10 my-10">
                 <figure>
                     <img className='p-5 md:p-0 image-full' src={img} alt="Movie" />
@@ -86,8 +87,12 @@ const ChefDetails = () => {
 
                 </div>
             </div>
+
+
+           {/* Here are chefs recipe  */}
+
+
             <h1 className='text-5xl text-center my-10'>Here are some recipe </h1>
-            {/* <ChefCard></ChefCard> */}
             <div className='grid  grid-cols-1 md:grid-cols-3 gap-8'>
                 <div className="card my-10 glass ">
                     <figure className='flex flex-col gap-4'>
@@ -167,7 +172,9 @@ const ChefDetails = () => {
                     </div>
                 </div>
             </div>
-
+            
+        </div>
+            <Footer></Footer>
         </div>
     );
 };
