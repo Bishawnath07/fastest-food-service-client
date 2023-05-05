@@ -14,12 +14,14 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     const GithubProvider = new GithubAuthProvider();
 
+    const from = location.state?.from?.pathname || "/"
 
     const handleGithubSignIn = () =>{
         signInWithPopup(auth , GithubProvider)
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser)
+            navigate(from, { replace: true })
         })
         .catch(error => {
             console.log(error.message)
@@ -31,13 +33,13 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user)
+            navigate(from, { replace: true })
         })
         .catch(error => {
             console.log(error.message)
         })
     }
 
-    const from = location.state?.from?.pathname || "/"
 
 
     const handleLogin = event => {

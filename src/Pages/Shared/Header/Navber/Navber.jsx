@@ -79,8 +79,7 @@ const Navbar = () => {
                 </li>
                 <li className='ml-6'>
                   <NavLink
-                    
-                    className='text-black px-3 py-2 rounded-md text-xl font-medium'
+                     className='text-black px-3 py-2 rounded-md text-xl font-medium'
                   >
                     About Us
                   </NavLink>
