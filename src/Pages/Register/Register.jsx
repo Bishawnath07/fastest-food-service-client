@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,6 +9,12 @@ const Register = () => {
     console.log(createUser);
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
+    const from = location.state?.from?.pathname || "/"
 
 
     const handleRegister = event => {
@@ -45,6 +51,7 @@ const Register = () => {
                 const createdUser = result.user;
                 console.log(createdUser);
                 updateUser(result.user , name , photo)
+                navigate("/")
                 
             })
 

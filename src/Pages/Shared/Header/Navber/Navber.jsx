@@ -71,7 +71,7 @@ const Navbar = () => {
                 </li>
                 <li className='ml-6'>
                   <NavLink
-                    to='/blog'
+                  
                     className='text-black px-3 py-2 rounded-md text-xl font-medium'
                   >
                     Menu
